@@ -1,0 +1,44 @@
+import { BrowserMetadataRenderer } from '../../../engine/BrowserMetadataRenderer'
+import { Button, Card, Container, Section, ScrollReveal } from '../design-system/components'
+import { Emblem, ProgressBar } from '../components/Header'
+
+const tracks = [
+  { number: '01', title: 'Mente', copy: 'Clareza para escolher melhor.', progress: 68, tone: 'amber' },
+  { number: '02', title: 'Corpo', copy: 'Presença para sustentar o caminho.', progress: 42, tone: 'stone' },
+  { number: '03', title: 'Espírito', copy: 'Profundidade para não perder o sentido.', progress: 31, tone: 'olive' },
+]
+
+const journey = [
+  ['01', 'Despertar', 'Perceber que saber não é o mesmo que viver.'],
+  ['02', 'Construir', 'Escolher os princípios que vão sustentar a prática.'],
+  ['03', 'Praticar', 'Transformar intenção em ações pequenas e consistentes.'],
+  ['04', 'Consolidar', 'Fazer da disciplina uma forma de liberdade.'],
+  ['05', 'Transmitir', 'Crescer o suficiente para servir e contribuir.'],
+]
+
+function Heading({ eyebrow, title, copy, light = false }: { eyebrow: string; title: string; copy?: string; light?: boolean }) {
+  return <header className={`ordem-heading ${light ? 'ordem-heading--light' : ''}`}><p className="ordem-eyebrow">{eyebrow}</p><h2>{title}</h2>{copy && <p className="ordem-heading__copy">{copy}</p>}</header>
+}
+
+export function HomePage() {
+  return <>
+    <BrowserMetadataRenderer metadata={{ title: 'A ORDEM — Conhecimento transformado em prática', description: 'Uma comunidade para quem escolheu governar a si mesmo.', locale: 'pt-BR', siteName: 'A ORDEM' }} />
+    <main id="conteudo-principal" className="ordem-home">
+      <section className="ordem-hero"><div className="ordem-hero__grain" aria-hidden="true" /><Container><div className="ordem-hero__grid"><div className="ordem-hero__copy"><p className="ordem-eyebrow">UM SISTEMA DE DESENVOLVIMENTO</p><h1>Conhecimento<br /><em>em prática.</em></h1><p className="ordem-hero__lead">A Ordem existe no espaço entre aquilo que você sabe e aquilo que você realmente vive.</p><div className="ordem-action-row"><Button href="#entrar">Conhecer a Ordem <span aria-hidden="true">↗</span></Button><a className="ordem-text-action" href="#manifesto">Ler o manifesto <span aria-hidden="true">↓</span></a></div></div><div className="ordem-hero__visual"><Emblem size="large" /><span className="ordem-hero__visual-label">A ORDEM<br /><small>APRENDER · PRATICAR · EVOLUIR</small></span><div className="ordem-hero__axis" aria-hidden="true" /></div></div><div className="ordem-hero__footer"><span>01 / 06</span><span className="ordem-hero__line" /><span>Uma comunidade para quem escolheu governar a si mesmo.</span></div></Container></section>
+
+      <Section className="ordem-manifesto" id="manifesto"><ScrollReveal><Heading eyebrow="O princípio" title="Saber é o começo. Viver é o trabalho." copy="Conhecimento sem prática não transforma. Intenção sem execução não constrói. Disciplina sem propósito se torna vazia." /><div className="ordem-manifesto__statement"><span>“</span><p>A Ordem é o compromisso diário de aproximar seus princípios das suas escolhas.</p></div></ScrollReveal></Section>
+
+      <section className="ordem-guardian"><Container><div className="ordem-guardian__grid"><ScrollReveal><p className="ordem-eyebrow">O Guardião</p><h2>Você não entra para assistir.<br /><em>Você entra para assumir.</em></h2><p>Guardião é quem transforma consciência em responsabilidade. Não é um título. É uma prática: presença, domínio próprio, serviço e fidelidade ao caminho escolhido.</p><Button href="#jornada" variant="secondary">Entender a jornada <span aria-hidden="true">↗</span></Button></ScrollReveal><ScrollReveal delay={120} className="ordem-guardian__seal"><Emblem size="large" /><div><span>GUARDIÃO</span><small>RESPONSABILIDADE · CONSCIÊNCIA · SERVIÇO</small></div></ScrollReveal></div></Container></section>
+
+      <Section className="ordem-journey" id="jornada"><ScrollReveal><Heading eyebrow="A jornada" title="Uma direção, não uma linha de chegada." copy="A progressão não mede quem você supera. Revela o que você está disposto a sustentar." /><ol className="ordem-journey__list">{journey.map(([number, title, copy]) => <li key={number}><span>{number}</span><div><h3>{title}</h3><p>{copy}</p></div></li>)}</ol></ScrollReveal></Section>
+
+      <section className="ordem-tracks"><Container><ScrollReveal><Heading eyebrow="Trilhas de desenvolvimento" title="Escolha onde começar. Trabalhe o todo." copy="As trilhas organizam o conhecimento em práticas que podem ser executadas, registradas e revisitadas." /></ScrollReveal><div className="ordem-tracks__grid">{tracks.map((track, index) => <ScrollReveal key={track.title} delay={index * 80}><Card className={`ordem-track-card ordem-track-card--${track.tone}`}><div className="ordem-track-card__top"><span>{track.number}</span><span>{track.progress}%</span></div><div className="ordem-track-card__glyph" aria-hidden="true">{index === 0 ? '△' : index === 1 ? '○' : '✦'}</div><h3>{track.title}</h3><p>{track.copy}</p><ProgressBar value={track.progress} /><span className="ordem-track-card__status">EM PROGRESSO <span aria-hidden="true">↗</span></span></Card></ScrollReveal>)}</div></Container></section>
+
+      <section className="ordem-practice"><Container><ScrollReveal><div className="ordem-practice__intro"><Heading eyebrow="Prática do dia" title="O próximo passo precisa ser claro." copy="Tickets são convites à execução. Menos consumo. Mais presença no que precisa ser feito agora." /><a className="ordem-text-action" href="#entrar">Ver como funciona <span aria-hidden="true">↗</span></a></div><Card className="ordem-ticket"><div className="ordem-ticket__top"><span className="ordem-ticket__tag">PRÁTICA · 07</span><span className="ordem-ticket__time">25 MIN</span></div><h3>Escreva o que você está evitando.</h3><p>Uma prática de clareza para nomear a próxima ação que está sob seu domínio.</p><div className="ordem-ticket__bottom"><span className="ordem-ticket__dot" /> DISPONÍVEL AGORA <Button size="compact" variant="dark">Começar</Button></div></Card></ScrollReveal></Container></section>
+
+      <section className="ordem-ecosystem" id="ecossistema"><Container><ScrollReveal><Heading light eyebrow="Dentro da Ordem" title="Um ecossistema para continuar em movimento." copy="Trilhas, práticas, desafios, encontros e conhecimento se conectam para que a transformação não dependa de motivação passageira." /></ScrollReveal><div className="ordem-ecosystem__map"><span className="ordem-ecosystem__center">A ORDEM</span><span className="ordem-ecosystem__node ordem-ecosystem__node--one">TRILHAS</span><span className="ordem-ecosystem__node ordem-ecosystem__node--two">DESAFIOS</span><span className="ordem-ecosystem__node ordem-ecosystem__node--three">ENCONTROS</span><span className="ordem-ecosystem__node ordem-ecosystem__node--four">CONHECIMENTO</span><span className="ordem-ecosystem__ring ordem-ecosystem__ring--one" /><span className="ordem-ecosystem__ring ordem-ecosystem__ring--two" /></div><div className="ordem-ecosystem__featured"><span>RECURSO RECOMENDADO</span><strong>Domínio da Mente</strong><p>Uma porta de entrada para observar os padrões que governam suas escolhas.</p><a href="#entrar">Explorar recurso <span aria-hidden="true">↗</span></a></div></Container></section>
+
+      <section className="ordem-final" id="entrar"><Container><Emblem /><p className="ordem-eyebrow">O primeiro passo</p><h2>O que você sabe<br /><em>merece ser vivido.</em></h2><p>Entre para uma comunidade que transforma princípios em prática. O caminho começa com uma escolha.</p><Button href="#manifesto">Conhecer a Ordem <span aria-hidden="true">↗</span></Button></Container></section>
+    </main>
+  </>
+}
