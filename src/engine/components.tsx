@@ -1,0 +1,12 @@
+import type { AnchorHTMLAttributes, ButtonHTMLAttributes, HTMLAttributes, ReactNode } from 'react'
+import type { CSSProperties } from 'react'
+
+export function Container({ className = '', ...props }: HTMLAttributes<HTMLDivElement>) { return <div className={`ds-container ${className}`.trim()} {...props} /> }
+export function Section({ className = '', contained = true, children, ...props }: HTMLAttributes<HTMLElement> & { contained?: boolean }) { return <section className={`ds-section ${className}`.trim()} {...props}>{contained ? <Container>{children}</Container> : children}</section> }
+export function Card({ className = '', ...props }: HTMLAttributes<HTMLDivElement>) { return <div className={`ds-card ${className}`.trim()} {...props} /> }
+export function Surface({ tone = 'light', className = '', ...props }: HTMLAttributes<HTMLDivElement> & { tone?: 'light' | 'white' | 'dark' | 'carbon' | 'accent' }) { return <div className={`ds-surface ds-surface--${tone} ${className}`.trim()} {...props} /> }
+export function TextLink({ className = '', ...props }: AnchorHTMLAttributes<HTMLAnchorElement>) { return <a className={`ds-link ${className}`.trim()} {...props} /> }
+type ActionButtonProps = { children: ReactNode; variant?: 'primary' | 'secondary' | 'dark'; size?: 'default' | 'compact'; className?: string } & (AnchorHTMLAttributes<HTMLAnchorElement> & { href: string } | React.ButtonHTMLAttributes<HTMLButtonElement> & { href?: undefined })
+export function Button({ variant = 'primary', size = 'default', children, className, ...props }: ActionButtonProps) { const classes = ['ds-button', `ds-button--${variant}`, size === 'compact' ? 'ds-button--compact' : '', className ?? ''].filter(Boolean).join(' '); if ('href' in props && props.href) { const anchorProps = props as AnchorHTMLAttributes<HTMLAnchorElement>; return <a className={classes} {...anchorProps}>{children}</a> } const buttonProps = props as ButtonHTMLAttributes<HTMLButtonElement>; return <button className={classes} type="button" {...buttonProps}>{children}</button> }
+export function Media({ src, alt, aspectRatio = '4 / 3' }: { src?: string; alt: string; aspectRatio?: string }) { return src ? <img src={src} alt={alt} style={{ aspectRatio } satisfies CSSProperties} /> : <div className="engine-media-placeholder" role="img" aria-label={alt} style={{ aspectRatio }} /> }
+export function ScrollReveal({ className = '', children, ...props }: HTMLAttributes<HTMLDivElement>) { return <div className={`reveal ${className}`.trim()} {...props}>{children}</div> }
