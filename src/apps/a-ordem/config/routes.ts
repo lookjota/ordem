@@ -9,5 +9,15 @@ export const aOrdemHomeMetadata: SeoDefinition = {
 }
 
 export const aOrdemPublicRoutes = [
-  { pathname: '/a-ordem', page: { metadata: aOrdemHomeMetadata }, includeInSitemap: false, prerender: true },
+  { pathname: '/', page: { metadata: aOrdemHomeMetadata }, includeInSitemap: false, prerender: true },
 ]
+
+export const notFoundPage = {
+  metadata: {
+    title: 'Página não encontrada | A ORDEM',
+    description: 'A página solicitada não está disponível.',
+    locale: 'pt-BR',
+    siteName: 'A ORDEM',
+    robots: { index: false, follow: true },
+  },
+}

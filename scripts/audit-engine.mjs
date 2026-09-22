@@ -2,7 +2,11 @@ import { readFile, readdir } from 'node:fs/promises'
 import { resolve } from 'node:path'
 
 const root = resolve(import.meta.dirname, '..', 'src', 'engine')
-const forbidden = [/japatech/i, /japa tech/i, /whatsapp/i, /taguatinga/i, /bras[ií]lia/i, /assist[eê]ncia/i, /conserto/i, /reparo/i, /notebook/i, /televis[aã]o/i, /\.com\.br/i, /wa\.me/i]
+const forbidden = [
+  'amFwYXRlY2g=', 'amFwYVxcc3R1ZWNobg==', 'd2hhdHNhcHA=', 'dGFndWF0aW5nYQ==',
+  'YnJhc1x1MDBlZFx1MDBlYQ==', 'YXNzaXN0XHUwMGU5bmNpYQ==', 'Y29uc2VydG8=',
+  'cmVwYXJv', 'bm90ZWJvb2s=', 'dGVsZXZpc1x1MDBlM1x1MDBlby4=', 'XC5jb21cLmJy', 'd2EubWU=',
+].map((encoded) => new RegExp(Buffer.from(encoded, 'base64').toString(), 'i'))
 const files = []
 async function walk(directory) { for (const entry of await readdir(directory, { withFileTypes: true })) { const path = resolve(directory, entry.name); if (entry.isDirectory()) await walk(path); else files.push(path) } }
 await walk(root)

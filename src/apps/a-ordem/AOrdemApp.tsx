@@ -28,16 +28,12 @@ function NotFound() {
 
 export function AOrdemApp() {
   return (
-    <BrowserRouter basename={`${import.meta.env.BASE_URL}a-ordem`}>
+    <BrowserRouter basename={import.meta.env.BASE_URL}>
       <Shell />
     </BrowserRouter>
   )
 }
 
 export function AOrdemServerApp({ pathname }: { pathname: string }) {
-  return (
-    <StaticRouter basename="/a-ordem" location={pathname}>
-      <Shell />
-    </StaticRouter>
-  )
+  return <StaticRouter location={pathname}><Shell /></StaticRouter>
 }
