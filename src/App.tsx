@@ -1,2 +1,6 @@
 import { AOrdemApp } from './apps/a-ordem/AOrdemApp'
-export default function App() { return <AOrdemApp /> }
+import { JapaTechApp } from './apps/japa-tech/JapaTechApp'
+
+export default function App() {
+  return window.location.pathname === '/a-ordem' ? <AOrdemApp /> : <JapaTechApp />
+}

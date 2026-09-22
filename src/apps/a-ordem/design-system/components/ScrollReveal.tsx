@@ -11,18 +11,22 @@ export function ScrollReveal({ children, delay = 0, className = '', ...props }: 
   const ref = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
+    let timer: ReturnType<typeof setTimeout> | undefined
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          const timer = setTimeout(() => setIsVisible(true), delay)
-          return () => clearTimeout(timer)
+          timer = setTimeout(() => setIsVisible(true), delay)
+          observer.disconnect()
         }
       },
       { threshold: 0.1 }
     )
 
     if (ref.current) observer.observe(ref.current)
-    return () => observer.disconnect()
+    return () => {
+      observer.disconnect()
+      if (timer) clearTimeout(timer)
+    }
   }, [delay])
 
   return (

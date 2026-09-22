@@ -1,4 +1,5 @@
-import { BrowserMetadataRenderer } from '../../../engine/BrowserMetadataRenderer'
+import { BrowserMetadataRenderer } from '../../../engine'
+import { aOrdemHomeMetadata } from '../config/routes'
 import { Button, Card, Container, Section, ScrollReveal } from '../design-system/components'
 import { Emblem, ProgressBar } from '../components/Header'
 
@@ -22,7 +23,7 @@ function Heading({ eyebrow, title, copy, light = false }: { eyebrow: string; tit
 
 export function HomePage() {
   return <>
-    <BrowserMetadataRenderer metadata={{ title: 'A ORDEM — Conhecimento transformado em prática', description: 'Uma comunidade para quem escolheu governar a si mesmo.', locale: 'pt-BR', siteName: 'A ORDEM' }} />
+    <BrowserMetadataRenderer metadata={aOrdemHomeMetadata} />
     <main id="conteudo-principal" className="ordem-home">
       <section className="ordem-hero"><div className="ordem-hero__grain" aria-hidden="true" /><Container><div className="ordem-hero__grid"><div className="ordem-hero__copy"><p className="ordem-eyebrow">UM SISTEMA DE DESENVOLVIMENTO</p><h1>Conhecimento<br /><em>em prática.</em></h1><p className="ordem-hero__lead">A Ordem existe no espaço entre aquilo que você sabe e aquilo que você realmente vive.</p><div className="ordem-action-row"><Button href="#entrar">Conhecer a Ordem <span aria-hidden="true">↗</span></Button><a className="ordem-text-action" href="#manifesto">Ler o manifesto <span aria-hidden="true">↓</span></a></div></div><div className="ordem-hero__visual"><Emblem size="large" /><span className="ordem-hero__visual-label">A ORDEM<br /><small>APRENDER · PRATICAR · EVOLUIR</small></span><div className="ordem-hero__axis" aria-hidden="true" /></div></div><div className="ordem-hero__footer"><span>01 / 06</span><span className="ordem-hero__line" /><span>Uma comunidade para quem escolheu governar a si mesmo.</span></div></Container></section>
 
