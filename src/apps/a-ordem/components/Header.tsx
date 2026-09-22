@@ -11,9 +11,9 @@ export function Header() {
         <nav className="ordem-nav" aria-label="Navegação principal">
           <a href="#manifesto">Manifesto</a><a href="#jornada">A jornada</a><a href="#ecossistema">Ecossistema</a>
         </nav>
-        <div className="ordem-header__actions"><Button href="#entrar" variant="secondary" size="compact">Entrar</Button><button className="ordem-menu-toggle" type="button" aria-expanded={isOpen} aria-controls="ordem-mobile-nav" aria-label={isOpen ? 'Fechar menu' : 'Abrir menu'} onClick={() => setIsOpen(!isOpen)}><span aria-hidden="true">{isOpen ? '×' : '☰'}</span></button></div>
+        <div className="ordem-header__actions"><Button variant="secondary" size="compact" disabled aria-label="Entrar — área autenticada em breve">Entrar</Button><button className="ordem-menu-toggle" type="button" aria-expanded={isOpen} aria-controls="ordem-mobile-nav" aria-label={isOpen ? 'Fechar menu' : 'Abrir menu'} onClick={() => setIsOpen(!isOpen)}><span aria-hidden="true">{isOpen ? '×' : '☰'}</span></button></div>
       </div>
-      {isOpen && <nav id="ordem-mobile-nav" className="ordem-mobile-nav" aria-label="Navegação mobile"><a href="#manifesto" onClick={() => setIsOpen(false)}>Manifesto</a><a href="#jornada" onClick={() => setIsOpen(false)}>A jornada</a><a href="#ecossistema" onClick={() => setIsOpen(false)}>Ecossistema</a><a href="#entrar" onClick={() => setIsOpen(false)}>Entrar</a></nav>}
+      {isOpen && <nav id="ordem-mobile-nav" className="ordem-mobile-nav" aria-label="Navegação mobile"><a href="#manifesto" onClick={() => setIsOpen(false)}>Manifesto</a><a href="#jornada" onClick={() => setIsOpen(false)}>A jornada</a><a href="#ecossistema" onClick={() => setIsOpen(false)}>Ecossistema</a><button type="button" disabled aria-label="Entrar — área autenticada em breve">Entrar</button></nav>}
     </header>
   )
 }
